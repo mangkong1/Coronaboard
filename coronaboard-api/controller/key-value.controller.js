@@ -1,4 +1,3 @@
-const { iRegexp } = require("sequelize/types/lib/operators");
 const { KeyValue } = require("../database");
 const { wrapWithErrorHandler } = require("../util");
 
