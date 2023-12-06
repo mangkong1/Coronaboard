@@ -3,7 +3,10 @@ import { Slide } from '../components/slide';
 
 export default function SinglePage({ pageContext }) {
   const { dataSource } = pageContext;
-  const { thirdSlideTitle } = dataSource;
+  const { countryByCc, globalStats } = dataSource;
+
+  console.log(countryByCc);
+  console.log(globalStats);
 
   return (
     <div>
