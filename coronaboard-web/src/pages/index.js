@@ -1,5 +1,5 @@
 import React from 'react';
-import { Slide } from '../components/slid';
+import { Slide } from '../components/slide';
 
 export default function Home() {
   const thirdSlideTitle = '예방 행동 수칙';

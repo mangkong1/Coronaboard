@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const axios = require('axios');
-const { subDays } = require('data-fns');
+const { subDays } = require('date-fns');
 const { format, utcToZonedTime } = require('date-fns-tz');
 
 const countryInfo = require('../../tools/downloaded/countryInfo.json');
