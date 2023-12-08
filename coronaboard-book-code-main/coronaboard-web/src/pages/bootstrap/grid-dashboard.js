@@ -10,7 +10,7 @@ const borderedGrid = css`
     border: 1px solid rgba(39, 41, 43, 0.1);
     padding: 10px;
     margin-bottom: 20px;
-  }`;
+`;
 
 export default function GridDashboardPage() {
   return (
