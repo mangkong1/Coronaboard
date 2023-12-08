@@ -4,23 +4,21 @@ const { subDays } = require('date-fns');
 const { format, utcToZonedTime } = require('date-fns-tz');
 
 const countryInfo = require('../../tools/downloaded/countryInfo.json');
+const notice = require('../../tools/downloaded/notice.json');
 
 async function getDataSource() {
   const countryByCc = _.keyBy(countryInfo, 'cc');
   const globalStats = await generateGlobalStats();
 
-  return { globalStats, countryByCc };
+  return {
+    lastUpdated: Date.now(),
+    globalStats,
+    countryByCc,
+    notice: notice.filter((x) => !x.hidden),
+  };
 }
 
-async function generateGlobalStats() {
-  const apiClient = axios.create({
-    baseURL: process.env.CORONABOARD_API_BASE_URL || 'http://localhost:8080',
-  });
-
-  const response = await apiClient.get('global-stats');
-
-  const groupedByDate = _.groupBy(response.data.result, 'date');
-
+async function generateGlobalStats(groupedByDate) {
   const now = new Date('2021-06-05');
   const timeZone = 'Asia/Seoul';
   const today = format(utcToZonedTime(now, timeZone), 'yyyy-MM-dd');

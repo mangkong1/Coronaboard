@@ -1,22 +1,45 @@
 import React from 'react';
 import { Slide } from '../components/slide';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { css } from '@emotion/react';
+import { Dashboard } from '../components/dashboard';
+import { Notice } from '../components/notice';
 
 export default function SinglePage({ pageContext }) {
   const { dataSource } = pageContext;
-  const { countryByCc, globalStats } = dataSource;
-
-  console.log(countryByCc);
-  console.log(globalStats);
+  const { lastUpdated, globalStats, notice } = dataSource;
+  const lastUpdatedFormatted = new Date(lastUpdated).toLocaleString();
 
   return (
-    <div>
-      <h1>코로나보드</h1>
-      <p>createPage로 만들어진 페이지입니다.</p>
-      <Slide title="국가별 현황">국가별 현황을 보여줍니다.</Slide>
-      <Slide title={'대한민국 지역별 현황'}>
-        대한민국 지역별 현황을 보여줍니다.
-      </Slide>
-      <Slide title={thirdSlideTitle}>예방 행동 수칙을 보여줍니다.</Slide>
+    <div id="top">
+      <div
+        css={css`
+          position: absolute;
+          background-color: black;
+          width: 100%;
+          height: 300px;
+          z-index: -99;
+        `}
+      />
+      <h1
+        css={css`
+          padding-top: 48px;
+          padding-bottom: 24px;
+          color: white;
+          text-align: center;
+          font-size: 28px;
+        `}
+      >
+        코로나19(COVID-19)
+        <br />
+        실시간 상황판
+      </h1>
+      <p className="text-center text-white">
+        마지막 업데이트:{lastUpdatedFormatted}
+      </p>
+
+      <Dashboard globalStats={globalStats} />
+      <Notice notice={notice} />
     </div>
   );
 }
